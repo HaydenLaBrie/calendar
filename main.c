@@ -78,7 +78,7 @@ int position_of_month(int year, int month){
 
 void print_calendar(int year, int month){
     char montharr [][12] ={"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-    char dayarr [][10] ={"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    char dayarr [][10] ={" Sunday  ", " Monday  ", " Tuesday ", "Wednesday", "Thursday ", " Friday  ", "Saturday "};
     int start = position_of_month(year, month); //what day the first day should be
     int days = 0;
     if(month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
@@ -100,8 +100,10 @@ void print_calendar(int year, int month){
         i++;
     }
     printf("\n");
-    int numbs[5][7]; //Need to make a 2d array that covers 0 - 31 and is formatted correctly, then I can make if statements to have it match right
-    while(i < days){
+    char numbs [][3]={"01","02","03","04","05","06","07"};
+    i = 0;
+    while(i < 7){
+        printf("    %s      ", *(numbs + i));
         i++;
     }
 }
