@@ -5,7 +5,7 @@ int position_of_month(int, int);
 void print_calendar(int, int);
 
 int main() {
-    print_calendar(2000,1);
+    print_calendar(2022,8);
     return 0;
 }
 
@@ -100,11 +100,37 @@ void print_calendar(int year, int month){
         i++;
     }
     printf("\n");
-    char numbs [][3]={"01","02","03","04","05","06","07"};
-    i = 0;
-    while(i < 7){
-        printf("    %s      ", *(numbs + i));
-        i++;
+    char numbs [][3]={"01","02","03","04","05","06","07", "08", "09", "10",
+                      "11", "12", "13", "14", "15", "16", "17", "18", "19",
+                      "20", "21", "22", "23", "24", "25", "26", "27", "28",
+                      "29", "30", "31"};
+    int j = 0;
+    if(start == 1){ //this month starts on sunday
+        i = 0;
+        while(days > 0){
+            while(i < 7 && days != 0){
+                printf("    %s      ", *(numbs + j));
+                days--;
+                i++;
+                j++;
+            }
+            i = 0;
+            printf("\n");
+        }
+    }
+    if(start == 2){ //this month starts on monday
+        printf("            "); //12 spaces
+        i = 1;
+        while(days > 0){
+            while (i < 7 && days != 0){
+                printf("    %s      ", *(numbs + j));
+                days--;
+                i++;
+                j++;
+            }
+            i = 0;
+            printf("\n");
+        }
     }
 }
 
