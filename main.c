@@ -3,9 +3,16 @@ int is_leap_year(int);
 int days_of_year(int);
 int position_of_month(int, int);
 void print_calendar(int, int);
+void print_numbers(int, int);
 
 int main() {
-    print_calendar(2022,8);
+    printf("Enter year: ");
+    int year;
+    scanf("%d", &year);
+    printf("Enter month: ");
+    int month;
+    scanf("%d", &month);
+    print_calendar(year,month);
     return 0;
 }
 
@@ -88,7 +95,19 @@ void print_calendar(int year, int month){
     else if(is_leap_year(year))
         days = 29;
     else
-        days = 30;
+        days = 28;
+    int x = 0;
+    while(x < 40){
+        printf(" ");
+        x++;
+    }
+    printf("%d\n", year);
+    x = 0;
+    while(x < 38){
+        printf(" ");
+        x++;
+    }
+    printf("%s\n", *(montharr + (month - 1)));
     int i = 0;
     while(i < 7){ //wordsize + 2; example Monday word count is 6 + 2 = 8, thus gets 8 spaces.
         if(i == 6){
@@ -100,37 +119,32 @@ void print_calendar(int year, int month){
         i++;
     }
     printf("\n");
+    print_numbers(start, days);
+}
+
+void print_numbers(int start, int days){
     char numbs [][3]={"01","02","03","04","05","06","07", "08", "09", "10",
                       "11", "12", "13", "14", "15", "16", "17", "18", "19",
                       "20", "21", "22", "23", "24", "25", "26", "27", "28",
                       "29", "30", "31"};
     int j = 0;
-    if(start == 1){ //this month starts on sunday
-        i = 0;
-        while(days > 0){
-            while(i < 7 && days != 0){
-                printf("    %s      ", *(numbs + j));
-                days--;
-                i++;
-                j++;
-            }
-            i = 0;
-            printf("\n");
-        }
-    }
-    if(start == 2){ //this month starts on monday
+    if(start == 0)
+        start = 7;
+    int i = start - 1;
+    while(i > 0){
         printf("            "); //12 spaces
-        i = 1;
-        while(days > 0){
-            while (i < 7 && days != 0){
-                printf("    %s      ", *(numbs + j));
-                days--;
-                i++;
-                j++;
-            }
-            i = 0;
-            printf("\n");
+        i--;
+    }
+    i = start - 1;
+    while(days > 0){
+        while(i < 7 && days != 0){
+            printf("    %s      ", *(numbs + j));
+            days--;
+            i++;
+            j++;
         }
+        i = 0;
+        printf("\n");
     }
 }
 
